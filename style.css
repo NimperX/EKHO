@@ -1,0 +1,10 @@
+.header {
+    background: url('img/home.jpg');
+    background-size: contain;
+    height: 100vh;
+    background-repeat: no-repeat;
+}
+
+.navbar {
+    height: 150px;
+}
