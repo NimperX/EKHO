@@ -40,8 +40,17 @@
                     <a class="nav-link" href="contact.php">Contact us</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
+        <form class="form-inline my-2 my-lg-0">
+            <div class="form-group mr-3">
+                <a href="#">
+                    <button class="btn btn-outline-success my-2 my-sm-0">Signin</button>
+                </a>
+            </div>
+            <div class="form-group mr-3">
+                <a href="#">
+                    <button class="btn btn-success my-2 my-sm-0">Login</button>
+                </a>
+            </div>
+        </form>
     </nav>
