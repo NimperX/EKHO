@@ -35,7 +35,7 @@
     }
 }
 
-.top-content h3 {
+.top-content h2 {
     color: #b0944f
 }
 
@@ -48,10 +48,39 @@
 }
 
 footer {
-    background: #fafafa;
+    background: #e6e6e6;
 }
 
 footer .container {
     margin-top: 100px;
     padding-bottom: 100px;
+}
+
+.circle .material-icons {
+    border-radius: 50%;
+    background: #d8c46e;
+    font-size: 60px;
+    padding: 40px;
+    color: #fff;
+}
+
+h2 {
+    color: #b0944f;
+}
+
+.btn-outline-gold {
+    color: #b0944f;
+    background-color: transparent;
+    background-image: none;
+    border-color: #b0944f;
+}
+
+.btn-outline-gold:hover {
+    color: #fff;
+    background-color: #b0944f;
+    border-color: #b0944f;
+}
+
+a {
+    text-decoration: none;
 }
