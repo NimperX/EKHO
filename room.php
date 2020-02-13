@@ -42,7 +42,7 @@
                                         ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Amount</td><td>: Rs. <? echo $room['Amount']; ?></td>
+                                    <td>Amount</td><td>: Rs. <?php echo $room['Amount']; ?>.00</td>
                                 </tr>
                             </table>
                             <h5>Room Amenities</h5>

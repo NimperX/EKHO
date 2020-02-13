@@ -1,6 +1,8 @@
 <?php
     if(session_status() == PHP_SESSION_NONE) 
     session_start();
+
+    $error = '';
     
     if(!(isset($_SESSION['r_id'])||isset($_POST['r_id'])))
         header('Location:room.php');
@@ -33,7 +35,20 @@
         $r_id = $mysqli->real_escape_string($_POST['r_id']);
         $amount = $mysqli->real_escape_string($_POST['amount']);
 
-        $query = $mysqli->query("SELECT * FROM `room` WHERE `duration_from` >= '$duration_from' OR `duration_to` <= '$duration_to' AND `r_id`='$r_id';")
+        $duration_from_date = new DateTime($duration_from);
+        $duration_to_date = new DateTime($duration_to);
+
+        $interval = $duration_from_date->diff($duration_to_date);
+        $amount *= ($interval->d);
+
+        $query = $mysqli->query("SELECT * FROM `room_book` WHERE (`duration_from` >= '$duration_from' AND `duration_from` <= '$duration_to') OR (`duration_to` >= '$duration_from' AND `duration_to` <= '$duration_to') AND `r_id`='$r_id';");
+
+        if($query->num_rows){
+            $error = 'This room has booked for those days. <a href="room.php">Choose another room</a>';
+        }else{
+            $query = $mysqli->query("INSERT INTO `room_book`(`r_id`,`c_id`,`duration_from`,`duration_to`,`amount`) VALUES('$r_id','$userid','$duration_from','$duration_to','$amount');");
+            header('Location:dashboard.php');
+        }
     }
 ?>
     <div class="container">
@@ -42,6 +57,18 @@
                 <h1>Reserve room</h1>
             </div>
         </div>
+        <?php if($error){ ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error : </strong><?php echo $error; ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
         <form method="post">
             <div class="form-row">
                 <div class="col-md-6">
@@ -63,7 +90,8 @@
             <div class="form-row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <input type="text" name='amount' value="Payment per day - Rs. <?php echo $room['Amount']; ?>" class="form-control" disabled />   
+                        <input type="text" value="Payment per day - Rs. <?php echo $room['Amount']; ?>.00" class="form-control" disabled />
+                        <input type="hidden" name="amount" value="<?php echo $room['Amount']; ?>" />   
                     </div>
                 </div>
             </div>
