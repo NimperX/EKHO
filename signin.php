@@ -22,9 +22,10 @@
             if($rows['password'] == $pass){
                 $_SESSION['userid'] = $rows['c_id'];
                 if(isset($_SESSION['r_id'])){
-                    
+                    header('Location:roomreserve.php');
+                }else{
+                    header('Location:dashboard.php');
                 }
-                header('Location:dashboard.php');
             }else{
                 $error = "Password do not match!";
             }
@@ -53,7 +54,6 @@
             </div>
 
         <?php } ?>
-
         <div class="row">
             <div class="col-md-6 offset-md-3 <?php if(!$error) echo 'signin-margin'; ?>">
                 <div class="card bg-light mb-3">

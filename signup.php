@@ -75,7 +75,7 @@
 
         <div class="row">
             <div class="col-md-8 offset-md-2 <?php if(!$error) echo 'signin-margin'; ?>">
-                <div class="card bg-light mb-3">
+                <div class="card bg-light mb-5">
                     <div class="card-header text-center"><h2>Sign up</h2></div>
                     <div class="card-body">
                         <form method="post">
