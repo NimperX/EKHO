@@ -1,5 +1,6 @@
 <?php
-include_once('header.php');
+include_once('src/db.php');
+include_once('src/header.php');
 ?>
 <div class="header"></div>
 <div class="container">
@@ -79,5 +80,5 @@ include_once('header.php');
 </div>
 
 <?php
-include_once('footer.php');
+include_once('src/footer.php');
 ?>

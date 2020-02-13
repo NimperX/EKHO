@@ -6,7 +6,7 @@
         EKHO Safari Tissa Hotel
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" href="img/ekho-main-logo.svg" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -45,16 +45,28 @@
                 </li>
             </ul>
         </div>
-        <form class="form-inline my-2 my-lg-0">
+        <div class="form-inline my-2 my-lg-0">
             <div class="form-group mr-3">
-                <a href="#">
-                    <button class="btn btn-outline-success my-2 my-sm-0">Signin</button>
-                </a>
+                <?php if(session_status() == PHP_SESSION_NONE) session_start(); if(isset($_SESSION['userid'])){ ?>
+                    <a href="dashboard.php">
+                        <button class="btn btn-gold my-2 my-sm-0">My Account</button>
+                    </a>
+                <?php }else{ ?>
+                    <a href="signup.php">
+                        <button class="btn btn-gold my-2 my-sm-0">Signup</button>
+                    </a>
+                <?php } ?>
             </div>
             <div class="form-group mr-3">
-                <a href="#">
-                    <button class="btn btn-success my-2 my-sm-0">Login</button>
-                </a>
+                <?php if(isset($_SESSION['userid'])){ ?>
+                    <a href="src/logout.php?logout">
+                        <button class="btn btn-gold my-2 my-sm-0">Logout</button>
+                    </a>
+                <?php }else{ ?>
+                    <a href="signin.php">
+                        <button class="btn btn-gold my-2 my-sm-0">Login</button>
+                    </a>
+                <?php } ?>
             </div>
-        </form>
+        </div>
     </nav>

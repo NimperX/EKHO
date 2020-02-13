@@ -1,5 +1,5 @@
 <?php
-    include_once('header.php');
+    include_once('src/header.php');
 ?>
     <div class="container"> 
         <div class="gallery-header text-center mt-5 pt-5">
@@ -59,5 +59,5 @@
         </div>
     </div>
 <?php 
-    include_once('footer.php');
+    include_once('src/footer.php');
 ?>

@@ -1,5 +1,5 @@
 .header {
-    background: url('img/home.jpg');
+    background: url('../img/home.jpg');
     background-size: cover;
     height: 100vh;
     background-repeat: no-repeat;
@@ -85,6 +85,30 @@ h5 {
     border-color: #b0944f;
 }
 
-a {
+.btn-gold {
+    color: #fff;
+    background-color: #b0944f;
+    border-color: #b0944f;
+}
+
+a,
+a:hover {
     text-decoration: none;
+}
+
+.signin-margin {
+    margin-top: 250px;
+}
+
+.signin-header {
+    background: url('../img/Yala.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.room-header {
+    background: url('../img/Room.jpg');
+    background-size: cover;
+    height: 50vh;
 }
