@@ -18,36 +18,26 @@ if (isset($_POST['submit'])) {
     $date = $mysqli->real_escape_string($_POST['date']);
     $no_of_seats = $mysqli->real_escape_string($_POST['no_of_seats']);
 
-    $query = $mysqli->query("SELECT * FROM `event`;");
+    $query = $mysqli->query("SELECT * FROM `event` WHERE `date`='$date';");
 
-    while ($event = $query->fetch_assoc()) {
-        if ($date == $event['date'])
-        $error = 'Hall is booked for this date.  <a href="hall.php"> Choose another date.</a>';
-    } ?>
-
-    <?php if($error){ ?>
-
-        <div class="row">
-            <div class="col-md-6 offset-md-3 text-center signin-margin">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Error: </strong><?php echo $error; ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-    <?php } 
-    else
-        $query = $mysqli->query("INSERT INTO `event`(`event_type`,`date`,`no_of_seats`,`c_id`) VALUES('$event_type','$date','$no_of_seats','$userid');");
-
-
-
-    // if(!$query){
-    //     $error = 'This room has booked for those days. <a href="room.php">Choose another room</a>';
-
-    // }
+    if($query->num_rows)
+            $error = 'Hall is booked for this date.  <a href="hall.php"> Choose another date.</a>';
+    else {
+        // $query = $mysqli->query("INSERT INTO `event`(`event_type`,`date`,`no_of_seats`,`c_id`) VALUES('$event_type','$date','$no_of_seats','$userid');");
+        $query = $mysqli->query("SELECT `e_id` FROM `event` WHERE `date`='$date';");
+        $eid = $query->fetch_assoc();
+        $e_id = $eid['e_id'];
+        $facilities = $_POST['facility'];
+        for ($i = 0; $i < count($facilities); $i++) {
+            $facility=$facilities[$i];
+            $query = $mysqli->query("INSERT INTO `event_facility`(`e_id`, `f_id`) VALUES('$e_id','$facility');");
+            if($query){
+                echo '1';
+            }else{
+                echo '0';
+            }
+        }
+    }
 }
 ?>
 
@@ -58,7 +48,20 @@ if (isset($_POST['submit'])) {
             <h1>Reserve Hall</h1>
         </div>
     </div>
+    <?php if ($error) { ?>
 
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center signin-margin">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error: </strong><?php echo $error; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <?php } ?>
     <form method="post">
 
         <div class="form-row">
@@ -92,6 +95,17 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
         </div>
+
+        <div class="form-row">
+            <?php
+            $query = $mysqli->query("SELECT * FROM `facility`;");
+            while ($facility = $query->fetch_assoc()) { ?>
+                <div class="col-md-4">
+                    <label class="checkbox-inline"><input type="checkbox" name="facility[]" value="<?php echo $facility['f_id']; ?>"><?php echo ' ' . $facility['facility'] . ' - ' . $facility['amount']; ?></label>
+                </div>
+            <?php } ?>
+        </div>
+
         <div class="form-row">
             <div class="form-group">
                 ` <button class="btn btn-outline-gold" type="submit" name="submit">Add reservation</button>

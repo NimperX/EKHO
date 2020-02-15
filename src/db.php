@@ -8,7 +8,7 @@ $q = [];
 $q[1] = "CREATE TABLE IF NOT EXISTS `complaint` ( `comp_id` int(5) NOT NULL, `name` varchar(255) DEFAULT NULL, `complain` text NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $q[2] = "CREATE TABLE IF NOT EXISTS `customer` (  `c_id` int(8) NOT NULL,  `firstname` varchar(50) NOT NULL,  `lastname` varchar(50) NOT NULL,  `email` varchar(255) NOT NULL, `password` VARCHAR(255) NOT NULL,  `contactno` varchar(12) NOT NULL,  `nic_passport` varchar(12) NOT NULL,  `cc_no` varchar(16) NOT NULL,  `exp_date` varchar(10) NOT NULL,  `cvv` int(3) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $q[3] = "CREATE TABLE IF NOT EXISTS `employee` (  `emp_id` int(4) NOT NULL,  `firstname` varchar(50) NOT NULL,  `lastname` varchar(50) NOT NULL,  `username` varchar(100) NOT NULL,  `password` varchar(255) NOT NULL,  `nic` varchar(12) NOT NULL,  `contactno` int(10) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-$q[4] = "CREATE TABLE IF NOT EXISTS `event` (  `e_id` int(5) NOT NULL,  `event_type` varchar(100) NOT NULL,  `date` date NOT NULL,  `no_of_seats` int(4) NOT NULL,  `advance` int(8) NOT NULL,  `balance` int(8) DEFAULT NULL,  `c_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+$q[4] = "CREATE TABLE IF NOT EXISTS `event` (  `e_id` int(5) NOT NULL,  `event_type` varchar(100) NOT NULL,  `date` date NOT NULL,  `no_of_seats` int(4) NOT NULL,  `advance` int(8) DEFAULT NULL,  `balance` int(8) DEFAULT NULL,  `c_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $q[5] = "CREATE TABLE IF NOT EXISTS `event_facility` (  `id` int(5) NOT NULL,  `e_id` int(4) NOT NULL,  `f_id` int(4) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $q[6] = "CREATE TABLE IF NOT EXISTS `facility` (  `f_id` int(4) NOT NULL,  `facility` varchar(255) NOT NULL,  `amount` int(8) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $q[7] = "CREATE TABLE IF NOT EXISTS `room` (  `r_id` int(5) NOT NULL, `room_name` VARCHAR(50) NOT NULL, `AC` tinyint(1) NOT NULL,  `room_size` int(1) NOT NULL,  `Amount` int(11) NOT NULL,  `other_features` text) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
@@ -48,7 +48,13 @@ $q[36] = "INSERT INTO `room`(`room_name`, `AC`, `room_size`, `Amount`, `other_fe
                 ('Deluxe Lake View', '1', '3', '18000', 'Air-conditioned rooms,Flat-screen satellite,TV,Wardrobe,Safe,Desk,Hairdryer,Telephone,Bottled water,Rain-shower facilities,Minibar'),
                 ('Suites', '0', '3', '11000', 'Additional living spaces,En-suite dining facilities,Sofa bed,Flat-screen satellite TV,Wardrobe,Safe,Desk,Hairdryer,Telephone,Bottled water'),
                 ('Suites', '0', '3', '11000', 'Additional living spaces,En-suite dining facilities,Sofa bed,Flat-screen satellite TV,Wardrobe,Safe,Desk,Hairdryer,Telephone,Bottled water');";
-$q[37] = "COMMIT;";
+$q[37] = "INSERT INTO `facility` (`facility`, `amount`)
+          VALUES ('Pool', 'Rs. 5000.00'),
+                 ('Mini Bar', 'Rs. 5000.00'),
+                 ('External Room', 'Rs. 5000.00'),
+                 ('Dance Floor', 'Rs. 2000.00'),
+                 ('DJ Music', 'Rs. 12000.00')";
+$q[38] = "COMMIT;";
 
 $mysqli  = new mysqli($host,$user,$pass) or die('Error while connecting to database');
 
@@ -57,7 +63,7 @@ if(!mysqli_connect_errno()){
     if($mysqli->errno){
         $mysqli->query('CREATE DATABASE IF NOT EXISTS `ekho` CHARACTER SET utf8 COLLATE utf8_general_ci;');
         $mysqli->select_db('ekho');
-        for($i=1;$i<=37;$i++){
+        for($i=1;$i<=38;$i++){
             $mysqli->query($q[$i]);
             if($mysqli->errno) die('Error occured : '.$mysqli->error);
         }
