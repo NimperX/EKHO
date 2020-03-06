@@ -41,7 +41,7 @@
                             Day-to-day Services
                         </h3>
                         <p class="card-text">Make new bill</p>
-                        <a href="bill/newbill.php"><button class="btn btn-block btn-gold mt-3" type="submit" name="submit">New Bill</button></a>
+                        <a href="newbill.php"><button class="btn btn-block btn-gold mt-3" type="submit" name="submit">New Bill</button></a>
                     </div>
                 </div>
             <?php } ?>
@@ -59,7 +59,7 @@
                             Add Employee
                         </h3>
                         <p class="card-text">Add employee to the hotel staff.</p>
-                        <a href="addemp.php"><button class="btn btn-gold mt-2">Go somewhere</button></a>
+                        <a href="addemp.php"><button class="btn btn-gold mt-2">Add employee</button></a>
                     </div>
                 </div>
             <?php }else{ ?>

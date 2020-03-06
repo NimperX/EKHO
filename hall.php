@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
             $facility=$facilities[$i];
             $query = $mysqli->query("INSERT INTO `event_facility`(`e_id`, `f_id`) VALUES('$e_id','$facility');");
         }
-        $success = 'Hall has successfully reserved'
+        $success = 'Hall has successfully reserved';
     }
 }
 ?>
@@ -110,7 +110,10 @@ if (isset($_POST['submit'])) {
         <div class="form-row">
             <?php
             $query = $mysqli->query("SELECT * FROM `facility`;");
-            while ($facility = $query->fetch_assoc()) { ?>
+            $i=5;
+            while ($i) { 
+                $i--;
+                $facility = $query->fetch_assoc(); ?>
                 <div class="col-md-4">
                     <label class="checkbox-inline"><input type="checkbox" name="facility[]" value="<?php echo $facility['f_id']; ?>"><?php echo ' ' . $facility['facility'] . ' - Rs.' . $facility['amount'] . '.00'; ?></label>
                 </div>

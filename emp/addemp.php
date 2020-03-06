@@ -31,16 +31,7 @@
                 if($mysqli->errno){
                     $error = "Error occured while saving data, try again. ".$mysqli->error;
                 }else{
-                    $query = $mysqli->query("SELECT * FROM `employee` WHERE `username`='$username' LIMIT 1");
-
-                    if($query->num_rows){
-                        $rows = $query->fetch_assoc();
-
-                        $_SESSION['empid'] = $rows['emp_id'];
-                        header('Location:dashboard.php');
-                    }else{
-                        $error = "Error occured while login, try again.";
-                    }
+                    header('Location:dashboard.php');
                 }
             }
         }
@@ -67,7 +58,7 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="card bg-light mb-5">
-                    <div class="card-header text-center"><h2>Sign up</h2></div>
+                    <div class="card-header text-center"><h2>Add employee</h2></div>
                     <div class="card-body">
                         <form method="post">
                             <div class="form-row">
@@ -82,7 +73,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="username">Email address</label>
+                                    <label for="username">Username</label>
                                     <input type="text" name="username" class="form-control" placeholder="Username" required/>
                                 </div>
                             </div>

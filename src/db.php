@@ -14,7 +14,7 @@ $q[6] = "CREATE TABLE IF NOT EXISTS `facility` (  `f_id` int(4) NOT NULL,  `faci
 $q[7] = "CREATE TABLE IF NOT EXISTS `room` (  `r_id` int(5) NOT NULL, `room_name` VARCHAR(50) NOT NULL, `AC` tinyint(1) NOT NULL,  `room_size` int(1) NOT NULL,  `Amount` int(11) NOT NULL,  `other_features` text) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $q[8] = "CREATE TABLE IF NOT EXISTS `room_book` (  `id` int(5) NOT NULL,  `r_id` int(5) NOT NULL,  `c_id` int(8) NOT NULL,  `duration_from` date NOT NULL,  `duration_to` date NOT NULL,  `ordered_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  `amount` int(8) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $q[9] = "CREATE TABLE IF NOT EXISTS `sale` (  `s_id` int(6) NOT NULL,  `date_time` datetime NOT NULL,  `total` int(8) NOT NULL,  `emp_id` int(4) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-$q[10] = "CREATE TABLE IF NOT EXISTS `sale_facility` (  `id` int(5) NOT NULL,  `s_id` int(6) NOT NULL,  `f_id` int(4) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+$q[10] = "CREATE TABLE IF NOT EXISTS `sale_facility` (  `id` int(5) NOT NULL,  `s_id` int(6) NOT NULL,  `f_id` int(4) NOT NULL, `count` int(4) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 $q[11] = "ALTER TABLE `complaint`  ADD PRIMARY KEY (`comp_id`);";
 $q[12] = "ALTER TABLE `customer`  ADD PRIMARY KEY (`c_id`);";
 $q[13] = "ALTER TABLE `employee`  ADD PRIMARY KEY (`emp_id`),  ADD UNIQUE KEY `UsernameUnique` (`username`);";
@@ -53,7 +53,14 @@ $q[37] = "INSERT INTO `facility` (`facility`, `amount`)
                  ('Mini Bar', '5000'),
                  ('External Room', '5000'),
                  ('Dance Floor', '2000'),
-                 ('DJ Music', '12000')";
+                 ('DJ Music', '12000'),
+                 ('Pool per person','300'),
+                 ('Lunch buffet per plate','1200'),
+                 ('Bite plate','600'),
+                 ('Dinner buffet per plate','1000'),
+                 ('Special dinner table','3000'),
+                 ('Cockage','400'),
+                 ('Ice bucket','300');";
 $q[38] = "INSERT INTO `employee` (`emp_id`, `firstname`, `lastname`, `username`, `password`, `nic`, `contactno`) VALUES (NULL, 'Hotel', 'Manager', 'manager', 'manager@123', '123456789V', '0712345678');";
 $q[39] = "COMMIT;";
 
