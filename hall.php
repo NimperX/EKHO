@@ -3,6 +3,7 @@ if (session_status() == PHP_SESSION_NONE)
     session_start();
 
 $error = "";
+$success = "";
 
 if (isset($_SESSION['userid'])) {
     $userid = $_SESSION['userid'];
@@ -23,7 +24,7 @@ if (isset($_POST['submit'])) {
     if($query->num_rows)
             $error = 'Hall is booked for this date.  <a href="hall.php"> Choose another date.</a>';
     else {
-        // $query = $mysqli->query("INSERT INTO `event`(`event_type`,`date`,`no_of_seats`,`c_id`) VALUES('$event_type','$date','$no_of_seats','$userid');");
+        $query = $mysqli->query("INSERT INTO `event`(`event_type`,`date`,`no_of_seats`,`c_id`) VALUES('$event_type','$date','$no_of_seats','$userid');");
         $query = $mysqli->query("SELECT `e_id` FROM `event` WHERE `date`='$date';");
         $eid = $query->fetch_assoc();
         $e_id = $eid['e_id'];
@@ -31,12 +32,8 @@ if (isset($_POST['submit'])) {
         for ($i = 0; $i < count($facilities); $i++) {
             $facility=$facilities[$i];
             $query = $mysqli->query("INSERT INTO `event_facility`(`e_id`, `f_id`) VALUES('$e_id','$facility');");
-            if($query){
-                echo '1';
-            }else{
-                echo '0';
-            }
         }
+        $success = 'Hall has successfully reserved'
     }
 }
 ?>
@@ -62,13 +59,26 @@ if (isset($_POST['submit'])) {
     </div>
 
     <?php } ?>
+    <?php if ($success) { ?>
+        
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center signin-margin">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success: </strong><?php echo $success; ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <?php } ?>
     <form method="post">
 
         <div class="form-row">
-            <input type="hidden" name="e_id" value="<?php echo $e_id; ?>" />
             <div class="col-md-5">
                 <div class="form-group">
-                    <label for="evnt_type">Event Type</label>
+                    <label for="event_type">Event Type</label>
                     <select class="form-control" name="event_type">
                         <option value="Wedding">Wedding</option>
                         <option value="Meeting">Meeting</option>
@@ -92,6 +102,7 @@ if (isset($_POST['submit'])) {
                 <div class="form-group">
                     <label for="no_of_seats">No of Seats:</label>
                     <input type="no_of_seats" name="no_of_seats" class="form-control" placeholder="No of Seats" />
+                    <label for="no_of_seats">Rs. 700 per pax</label>
                 </div>
             </div>
         </div>
@@ -101,7 +112,7 @@ if (isset($_POST['submit'])) {
             $query = $mysqli->query("SELECT * FROM `facility`;");
             while ($facility = $query->fetch_assoc()) { ?>
                 <div class="col-md-4">
-                    <label class="checkbox-inline"><input type="checkbox" name="facility[]" value="<?php echo $facility['f_id']; ?>"><?php echo ' ' . $facility['facility'] . ' - ' . $facility['amount']; ?></label>
+                    <label class="checkbox-inline"><input type="checkbox" name="facility[]" value="<?php echo $facility['f_id']; ?>"><?php echo ' ' . $facility['facility'] . ' - Rs.' . $facility['amount'] . '.00'; ?></label>
                 </div>
             <?php } ?>
         </div>

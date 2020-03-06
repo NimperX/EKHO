@@ -1,6 +1,6 @@
 <?php
     include_once('src/header.php');
-    session_start();
+    if(session_status() == PHP_SESSION_NONE) session_start();
 ?>
 <div class="container">
     <div class="row mt-5 mb-4 pt-5 ">

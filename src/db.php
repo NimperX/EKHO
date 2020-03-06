@@ -49,12 +49,13 @@ $q[36] = "INSERT INTO `room`(`room_name`, `AC`, `room_size`, `Amount`, `other_fe
                 ('Suites', '0', '3', '11000', 'Additional living spaces,En-suite dining facilities,Sofa bed,Flat-screen satellite TV,Wardrobe,Safe,Desk,Hairdryer,Telephone,Bottled water'),
                 ('Suites', '0', '3', '11000', 'Additional living spaces,En-suite dining facilities,Sofa bed,Flat-screen satellite TV,Wardrobe,Safe,Desk,Hairdryer,Telephone,Bottled water');";
 $q[37] = "INSERT INTO `facility` (`facility`, `amount`)
-          VALUES ('Pool', 'Rs. 5000.00'),
-                 ('Mini Bar', 'Rs. 5000.00'),
-                 ('External Room', 'Rs. 5000.00'),
-                 ('Dance Floor', 'Rs. 2000.00'),
-                 ('DJ Music', 'Rs. 12000.00')";
-$q[38] = "COMMIT;";
+          VALUES ('Pool', '5000'),
+                 ('Mini Bar', '5000'),
+                 ('External Room', '5000'),
+                 ('Dance Floor', '2000'),
+                 ('DJ Music', '12000')";
+$q[38] = "INSERT INTO `employee` (`emp_id`, `firstname`, `lastname`, `username`, `password`, `nic`, `contactno`) VALUES (NULL, 'Hotel', 'Manager', 'manager', 'manager@123', '123456789V', '0712345678');";
+$q[39] = "COMMIT;";
 
 $mysqli  = new mysqli($host,$user,$pass) or die('Error while connecting to database');
 
@@ -63,7 +64,7 @@ if(!mysqli_connect_errno()){
     if($mysqli->errno){
         $mysqli->query('CREATE DATABASE IF NOT EXISTS `ekho` CHARACTER SET utf8 COLLATE utf8_general_ci;');
         $mysqli->select_db('ekho');
-        for($i=1;$i<=38;$i++){
+        for($i=1;$i<=39;$i++){
             $mysqli->query($q[$i]);
             if($mysqli->errno) die('Error occured : '.$mysqli->error);
         }
