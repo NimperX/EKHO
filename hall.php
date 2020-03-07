@@ -33,7 +33,15 @@ if (isset($_POST['submit'])) {
             $facility=$facilities[$i];
             $query = $mysqli->query("INSERT INTO `event_facility`(`e_id`, `f_id`) VALUES('$e_id','$facility');");
         }
-        $success = 'Hall has successfully reserved';
+
+        $query1 = $mysqli->query("SELECT SUM(f.`amount`) as `total` FROM `event_facility` ef JOIN `facility` f ON ef.`f_id`=f.`f_id` WHERE ef.`e_id`='$e_id';");
+        if($query1)
+            $totals = $query1->fetch_assoc();
+        
+        $total = $totals['total']+(700*$no_of_seats);
+        $query = $mysqli->query("UPDATE `event` SET `balance`='$total' WHERE `e_id`='$e_id';");
+        if($query)
+            $success = 'Hall has successfully reserved';
     }
 }
 ?>
@@ -48,7 +56,7 @@ if (isset($_POST['submit'])) {
     <?php if ($error) { ?>
 
     <div class="row">
-        <div class="col-md-6 offset-md-3 text-center signin-margin">
+        <div class="col-md-6 offset-md-3 text-center">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Error: </strong><?php echo $error; ?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -62,7 +70,7 @@ if (isset($_POST['submit'])) {
     <?php if ($success) { ?>
         
         <div class="row">
-            <div class="col-md-6 offset-md-3 text-center signin-margin">
+            <div class="col-md-6 offset-md-3 text-center">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Success: </strong><?php echo $success; ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

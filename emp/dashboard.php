@@ -24,9 +24,9 @@
                         </h3>
                         <p class="card-text">Select date for report generation process.</p>
                         <form method="post" action="dailyreport.php">
-                            <input type="date" name="date" placeholder="Select date"/>
+                            <input type="date" name="date" placeholder="Select date"/><br>
+                            <button class="btn btn-gold mt-3" type="submit" name="submit">Generate</button>
                         </form>
-                        <button class="btn btn-gold mt-3" type="submit" name="submit">Generate</button>
                     </div>
                 </div>
             <?php }else{ ?>
@@ -77,6 +77,37 @@
                         <a href="findevent.php"><button class="btn btn-block btn-gold mt-2">Enter</button></a>
                     </div>
                 </div>
+            <?php } ?>
+        </div>
+        <div class="col-md-12">
+            <?php if($_SESSION['empid'] == 1){ ?>
+                <h1>Upcoming events</h1>
+                <table class="table">
+                    <tr><th>#</th><th>Event type</th><th>Date</th><th>No. of seats</th><th>Full amount(Rs.)</th><th>Balance to be paid(Rs.)</th></tr>
+                    <?php
+                        include_once('../src/db.php');
+                        $now = new DateTime();
+                        $date = $now->format('Y-m-d');
+                        $query = $mysqli->query("SELECT * FROM `event` WHERE `date`>='$date' ORDER BY `date` ASC;");
+
+                        if($query){
+                            $i=0;
+                            while($row = $query->fetch_assoc()){
+                                $i++;
+                                ?>
+                                <tr>
+                                    <td><?php echo $i; ?></td>
+                                    <td><?php echo $row['event_type']; ?></td>
+                                    <td><?php echo $row['date']; ?></td>
+                                    <td><?php echo $row['no_of_seats']; ?></td>
+                                    <td><?php echo $row['balance']; ?>.00</td>
+                                    <td><?php echo $row['balance']-$row['advance']; ?>.00</td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                    ?>
+                </table>
             <?php } ?>
         </div>
     </div>
