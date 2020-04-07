@@ -64,7 +64,6 @@
             <h5>Rooms</h5>
         </div>
         <div class="row mt-2 mb-5">
-        <div class="row mt-2 mb-5">
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12 mb-12">
