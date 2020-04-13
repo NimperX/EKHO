@@ -6,11 +6,27 @@ include_once('src/header.php');
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="top-content">
+            <div class="top-content mb-5 pb-5">
                 <h2>Your Guide To EKHO Safari, Tissamaharama</h2>
-                <p>A rejuvenating waterfront retreat - EKHO Safari occupies a prime position in Tissamaharama. Scenically located by the ancient “Tissa Wewa” providing undisturbed views of the lake.</p>
-
-                <p>The Tissamaharama property traces it's roots back when it started operation in 1967, now restored to a comfortable and beautifully laid lake view hotel.</p>
+                <div class="container-fluid">
+                    <div class="row mt-3">
+                        <div class="col-md-6 text-right">
+                            <p>A rejuvenating waterfront retreat - EKHO Safari occupies a prime position in Tissamaharama. Scenically located by the ancient “Tissa Wewa” providing undisturbed views of the lake.<br>The Tissamaharama property traces it's roots back when it started operation in 1967, now restored to a comfortable and beautifully laid lake view hotel.</p>
+                    </div>
+                        <div class="col-md-6"><img src="img/Gallery-Dining-4.jpg" class="img-fluid"></div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 text-right"><p>Welcome to EKHO Safari Tissa Hotel, your number one source for relaxation. We're dedicated to giving you the very best of experience, with a focus on your preferences.
+Founded in 2000, EKHO Safari Tissa Hotel has come a long way from its beginnings. We now serve customers all over Sri Lanka, and are thrilled to be a part of the eco-friendly wing of the hotel industry.</p>
+<p>We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.</p>
+                        </div>
+                        <div class="col-md-6"><img src="img/Gallery-Public-Spaces-3.jpg" class="img-fluid"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-justify">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="middle-content">
