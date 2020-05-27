@@ -12,7 +12,7 @@
 <div class="container mt-5 pt-5">
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1>Daily Report</h1>
+            <h1> Sale Report of EKHO Safari</h1>
             <h3>Report for <?php echo date("F j, Y",strtotime($date)); ?></h3>
         </div>
     </div>

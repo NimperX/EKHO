@@ -100,7 +100,41 @@ a:hover {
 }
 
 .room-header {
-    background: url('../img/Room.jpg');
+    background: url('../img/.jpg');
     background-size: cover;
-    height: 50vh;
+    height: 100vh;
+}
+
+.btn-edit {
+    color: #fff;
+    background-color: #40bad5;
+    border-color: #b0944f;
+    min-width: 100px;
+    max-width: 200px;
+    max-height: 40px;
+    min-height: 30px;
+}
+
+.btn-up {
+
+    color: #fff;
+    background-color: #2fc4b2;
+    border-color: #b0944f;
+    min-width: 100px;
+    max-width: 200px;
+    max-height: 40px;
+    min-height: 30px;
+}
+
+.alert {
+        padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
 }
