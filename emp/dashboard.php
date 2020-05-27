@@ -20,11 +20,9 @@
                             </i>
                         </div>
                         <h3 class="mt-3">
-                            Daily Report
+                            Sales Report
                         </h3>
-                        <p class="card-text">Select date for report generation process.</p>
                         <form method="post" action="dailyreport.php">
-                            <input type="date" name="date" placeholder="Select date"/><br>
                             <button class="btn btn-gold mt-3" type="submit" name="submit">Generate</button>
                         </form>
                     </div>

@@ -6,21 +6,20 @@
         header('Location:index.php');
 
     include('../src/header-emp.php');
-    $date = date("Y-m-d", strtotime($_POST['date']));
+    
 ?>
 
 <div class="container mt-5 pt-5">
     <div class="row">
         <div class="col-md-12 text-center">
             <h1> Sale Report of EKHO Safari</h1>
-            <h3>Report for <?php echo date("F j, Y",strtotime($date)); ?></h3>
         </div>
     </div>
     <table class="table">
         <tr><th>#</th><th>Time</th><th>Biiled by</th><th class="text-right">Amount(Rs.)</th></tr>
         <?php
             include_once('../src/db.php');
-            $query = $mysqli->query("SELECT * FROM `sale` s JOIN `employee` e ON s.`emp_id`=e.`emp_id` WHERE `date_time` LIKE '$date%';");
+            $query = $mysqli->query("SELECT * FROM `sale` s JOIN `employee` e ON s.`emp_id`=e.`emp_id`;");
             $total=0;
             if($query->num_rows){
                 $i=0;
