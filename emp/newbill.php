@@ -69,12 +69,32 @@
                                     <?php
                                         include_once('../src/db.php');
 
+                                        function displayPrice($price){
+                $str = strval($price);
+                $len = strlen($str);
+                $d = 0;
+                $reStr = "";
+                for($i=$len-1;$i>=0;$i--){
+                    $d++;
+                    if($d % 3 == 0){
+                        $reStr .= $str[$i] . ",";
+                    } else {
+                        $reStr .= $str[$i];
+                    }
+                }
+                $output = strrev($reStr);
+                if($output[0] == ','){
+                    $output[0] = ' ';
+                }
+                return $output;
+            }
+
                                         $facilities = $mysqli->query("SELECT * FROM `facility`;");
                                         $i=0;
                                         while($facility = $facilities->fetch_assoc()){
                                             $i++;
                                             if($i<=5) continue;
-                                            echo '<option value="'.$facility['f_id'].'">'.$facility['facility'].'(Rs.'.$facility['amount'].'.00)</option>';
+                                            echo '<option value="'.$facility['f_id'].'">'.$facility['facility'].'(Rs.'.displayPrice($facility['amount']).'.00)</option>';
                                         }
                                     ?>
                                 </select>
@@ -101,20 +121,22 @@
                 Sri Lanka</td></tr>
             <tr><th>#</th><th>Description</th><th class="text-right">Amount(Rs.)</th><th class="text-right">Count</th><th class="text-right">Price(Rs.)</th></tr>
             <?php
+
+
                 $query = $mysqli->query("SELECT * FROM `sale_facility` sf JOIN `facility` f ON sf.`f_id`=f.`f_id` WHERE sf.`s_id`='$s_id';");
 
                 if($query->num_rows){
                     $i=0;
                     while($row = $query->fetch_assoc()){
                         $i++;
-                        echo '<tr><td>'.$i.'</td><td>'.$row['facility'].'</td><td class="text-right">'.$row['amount'].'.00</td><td class="text-right">'.$row['count'].'</td><td class="text-right">'.$row['amount']*$row['count'].'.00</td></tr>';
+                        echo '<tr><td>'.$i.'</td><td>'.$row['facility'].'</td><td class="text-right">'.displayPrice($row['amount']).'.00</td><td class="text-right">'.$row['count'].'</td><td class="text-right">'.displayPrice($row['amount']*$row['count']).'.00</td></tr>';
                     }
                 }
 
                 $query = $mysqli->query("SELECT * FROM `sale` WHERE `s_id`='$s_id';");
                 if($query->num_rows){
                     $row = $query->fetch_assoc();
-                    echo '<tr><td></td><td></td><td class="text-right"></td><td class="text-right"></td><th class="text-right">'.$row['total'].'.00</td></tr>';
+                    echo '<tr><td></td><td></td><td class="text-right"></td><td class="text-right"></td><th class="text-right">'.displayPrice($row['total']).'.00</td></tr>';
                 }
             ?>
         </table>

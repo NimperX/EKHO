@@ -70,6 +70,27 @@
         <table class="table">
             <tr><th>#</th><th>Event type</th><th>Date</th><th>No. of seats</th><th>Full amount(Rs.)</th><th>Balance to be paid(Rs.)</th><th>Actions</th></tr>
             <?php
+
+                function displayPrice($price){
+                $str = strval($price);
+                $len = strlen($str);
+                $d = 0;
+                $reStr = "";
+                for($i=$len-1;$i>=0;$i--){
+                    $d++;
+                    if($d % 3 == 0){
+                        $reStr .= $str[$i] . ",";
+                    } else {
+                        $reStr .= $str[$i];
+                    }
+                }
+                $output = strrev($reStr);
+                if($output[0] == ','){
+                    $output[0] = ' ';
+                }
+                return $output;
+            }
+
                 include_once('../src/db.php');
                 $query = $mysqli->query("SELECT * FROM `event` ORDER BY `date` DESC;");
 
@@ -83,8 +104,8 @@
                             <td><?php echo $row['event_type']; ?></td>
                             <td><?php echo $row['date']; ?></td>
                             <td><?php echo $row['no_of_seats']; ?></td>
-                            <td><?php echo $row['balance']; ?>.00</td>
-                            <td><?php echo $row['balance']-$row['advance']; ?>.00</td>
+                            <td><?php echo displayPrice($row['balance']); ?>.00</td>
+                            <td><?php echo displayPrice($row['balance']-$row['advance']); ?>.00</td>
                             <td>
                                 <form method="post">
                                     <div class="form-row">

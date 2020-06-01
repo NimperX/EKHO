@@ -13,6 +13,26 @@
         }
     }
 
+    function displayPrice($price){
+                $str = strval($price);
+                $len = strlen($str);
+                $d = 0;
+                $reStr = "";
+                for($i=$len-1;$i>=0;$i--){
+                    $d++;
+                    if($d % 3 == 0){
+                        $reStr .= $str[$i] . ",";
+                    } else {
+                        $reStr .= $str[$i];
+                    }
+                }
+                $output = strrev($reStr);
+                if($output[0] == ','){
+                    $output[0] = ' ';
+                }
+                return $output;
+            }
+
 
     if(session_status() == PHP_SESSION_NONE) 
     session_start();
@@ -211,10 +231,10 @@
                                 <td>'.$row['room_name'].'</td>
                                 <td>'.$row['room_size'].' person</td>
                                 <td>'.($row['AC']==1?'AC':'Non-AC').'</td>
-                                <td>Rs.'.$row['duration_from'].'.00</td>
+                                <td>Rs.'.$row['duration_from'].'</td>
                                 <td>'.$row['duration_to'].'</td>
                                 <td>'.$row['ordered_date'].'</td>
-                                <td>Rs.'.$row['amount'].'.00</td>
+                                <td>Rs.'.displayPrice($row['amount']).'.00</td>
                                 <td>'.$row['other_features'].'</td>
                                 <td><a href="src/deletehallroom.php?room='.$row['id'].'"><button class="btn btn-danger">Delete</button></a></td></tr>';
                         }
@@ -377,10 +397,10 @@
                                 <td>'.$row['room_name'].'</td>
                                 <td>'.$row['room_size'].' person</td>
                                 <td>'.($row['AC']==1?'AC':'Non-AC').'</td>
-                                <td>'.$row['duration_from'].'.00</td>
+                                <td>'.$row['duration_from'].'</td>
                                 <td>'.$row['duration_to'].'</td>
                                 <td>'.$row['ordered_date'].'</td>
-                                <td>Rs.'.$row['amount'].'.00</td>
+                                <td>Rs.'.displayPrice($row['amount']).'.00</td>
                                 <td>'.$row['other_features'].'</td>
                                 <td><a href="src/deletehallroom.php?room='.$row['id'].'"><button class="btn btn-danger">Delete</button></a></td></tr>';
                         }
