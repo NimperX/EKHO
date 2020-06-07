@@ -67,7 +67,7 @@ $q[38] = "INSERT INTO `employee` (`emp_id`, `firstname`, `lastname`, `username`,
 // New Tables Event Type and Day-to-Day services
 
 $q[39] = "CREATE TABLE IF NOT EXISTS `event_types` (
-  `type_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ";
@@ -80,7 +80,7 @@ $q[40] = "INSERT INTO `event_types` (`type_id`, `name`) VALUES
 ";
 
 $q[41] = "CREATE TABLE IF NOT EXISTS `day_to_day_services` (
-  `service_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(200) NOT NULL,
   `image_uri` varchar(200) NOT NULL,
   `price` int(11) NOT NULL
