@@ -20,10 +20,9 @@
                             </a>
                         </p>
                         <p>
-                            EKHO Hotels <br>
-                            South Wing, <br>
-                            No. 02, Galle Road, <br>
-                            Colombo 03, <br>
+                            82600, <br>
+                            Kataragama Road, <br>
+                            Tissamaharama, <br>
                             Sri Lanka
                         </p>
                     </div>

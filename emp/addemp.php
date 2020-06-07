@@ -31,7 +31,7 @@
                 if($mysqli->errno){
                     $error = "Error occured while saving data, try again. ".$mysqli->error;
                 }else{
-                    header('Location:dashboard.php');
+                    header('Location:dashboard.php?newemp=YES');
                 }
             }
         }

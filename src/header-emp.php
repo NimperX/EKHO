@@ -28,7 +28,7 @@
                     if($_SESSION['empid'] == 1){
                  ?>
                     <a href="Productmanagement.php">
-                        <button class="btn btn-gold my-2 my-sm-0">Products</button>
+                        <button class="btn btn-gold my-2 my-sm-0">Product Management</button>
                     </a>
                 <?php }} ?>
             </div>

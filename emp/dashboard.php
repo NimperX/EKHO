@@ -6,6 +6,14 @@
         header('Location:index.php');
 
     include('../src/header-emp.php');
+
+
+    if(isset($_GET['newemp'])){
+        if($_GET['newemp']== "YES"){
+             echo "<script>alert('Added new employee to the system successfully!')</script>";
+        }
+    }
+
 ?>
 
 <div class="container mt-5 pt-5">

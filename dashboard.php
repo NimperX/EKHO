@@ -50,6 +50,13 @@
 
     updateData($userid);
 
+    if(isset($_GET['fisrtTime'])){
+        if($_GET['fisrtTime'] == "YES"){
+             echo "<script>alert('Your account has been created successfully!')</script>";
+
+        }
+    }
+
     if(isset($_POST['update'])){
         include('src/db.php');
 
