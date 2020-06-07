@@ -88,15 +88,20 @@ if (isset($_POST['submit'])) {
                 <div class="form-group">
                     <label for="event_type">Event Type</label>
                     <select class="form-control" name="event_type">
-                        <option value="Wedding">Wedding</option>
-                        <option value="Meeting">Meeting</option>
-                        <option value="conference">Conference</option>
-                        <option value="Workshop">Workshop</option>
-                        <option value="Seminar">Seminar</option>
-                        <option value="Reunion">Reunion</option>
-                        <option value="Bithday party">Birthday party</option>
-                        <option value="Private party">Private party</option>
-                        <option value="Cocktail party">Cocktail party</option>
+
+                        <?php
+
+
+                        $eventTypesQuery = $mysqli->query("SELECT `name` FROM `event_types`;");
+                       
+
+                         while($row = $eventTypesQuery->fetch_assoc()){
+
+                            echo '<option value='.$row['name'].'>'.$row['name'].'</option>';
+                         }
+
+                         ?>
+
                     </select>
                 </div>
             </div>

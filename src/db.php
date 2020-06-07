@@ -62,7 +62,37 @@ $q[37] = "INSERT INTO `facility` (`facility`, `amount`)
                  ('Cockage','400'),
                  ('Ice bucket','300');";
 $q[38] = "INSERT INTO `employee` (`emp_id`, `firstname`, `lastname`, `username`, `password`, `nic`, `contactno`) VALUES (NULL, 'Hotel', 'Manager', 'manager', 'manager@123', '123456789V', '0712345678');";
-$q[39] = "COMMIT;";
+
+
+// New Tables Event Type and Day-to-Day services
+
+$q[39] = "CREATE TABLE IF NOT EXISTS `event_types` (
+  `type_id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+";
+
+
+$q[40] = "INSERT INTO `event_types` (`type_id`, `name`) VALUES
+(1, 'Wedding'),
+(2, 'Meeting'),
+(3, 'Conference');
+";
+
+$q[41] = "CREATE TABLE IF NOT EXISTS `day_to_day_services` (
+  `service_id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `image_uri` varchar(200) NOT NULL,
+  `price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+
+
+$q[42] = "INSERT INTO `day_to_day_services` (`service_id`, `name`, `image_uri`, `price`) VALUES
+(1, 'Ice bucket', 'ice-bucket.jpg', 300),
+(2, 'Cockage', 'cockage.jpg', 400);";
+
+
+$q[43] = "COMMIT;";
 
 $mysqli  = new mysqli($host,$user,$pass) or die('Error while connecting to database');
 
@@ -71,7 +101,7 @@ if(!mysqli_connect_errno()){
     if($mysqli->errno){
         $mysqli->query('CREATE DATABASE IF NOT EXISTS `ekho` CHARACTER SET utf8 COLLATE utf8_general_ci;');
         $mysqli->select_db('ekho');
-        for($i=1;$i<=39;$i++){
+        for($i=1;$i<=43;$i++){
             $mysqli->query($q[$i]);
             if($mysqli->errno) die('Error occured : '.$mysqli->error);
         }

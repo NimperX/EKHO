@@ -23,6 +23,16 @@
                 <?php } ?>
             </div>
             <div class="form-group mr-3">
+                <?php if(session_status() == PHP_SESSION_NONE) session_start(); if(isset($_SESSION['empid'])){
+
+                    if($_SESSION['empid'] == 1){
+                 ?>
+                    <a href="Productmanagement.php">
+                        <button class="btn btn-gold my-2 my-sm-0">Products</button>
+                    </a>
+                <?php }} ?>
+            </div>
+            <div class="form-group mr-3">
                 <?php if(isset($_SESSION['empid'])){ ?>
                     <a href="logout.php?logout">
                         <button class="btn btn-gold my-2 my-sm-0">Logout</button>
